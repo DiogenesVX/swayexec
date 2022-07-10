@@ -20,18 +20,18 @@ Of course this can run basically on any distro and desktop environment.
 
    2. Run the applications as follows (examples):
        
-### NOTE: Before you run any application with swayexec, close and re-open the terminal, otherwise the sudo timeout will keep your password active for a few minutes and the applications opened with swayexec will open without any password prompt.
+## NOTE: Before you run any application with swayexec, close and re-open the terminal, otherwise the sudo timeout will keep your password active for a few minutes and the applications opened with swayexec will open without any password prompt.
    
           swayexec <your app name>
           swayexec /usr/sbin/gparted
           swayexec gedit /etc/sysctl.conf
 
-   3. The best way would actually be to create a locat .desktop launcher for the desired application, for instance this is how you modify the gparted launcher to run with swayexec by default:
+   3. The best way would actually be to create a local .desktop launcher for the desired application, for instance this is how you modify the gparted launcher to run with swayexec by default:
 
           cp /usr/share/applications/gparted.desktop ~/.local/share/applications
           gedit ~/.local/share/applications/gparted.desktop
 
-Find the line that reads: "Exec=/usr/sbin/gparted %f" and just add swayexec like this: "Exec=/usr/sbin/gparted %f" save and exit. Now whenever you launch Gparted from the menu, it will open with swayexec.
+Find the line that reads: "Exec=/usr/sbin/gparted %f" and just add swayexec like this: "Exec=swayexec /usr/sbin/gparted %f" save and exit. Now whenever you launch Gparted from the menu, it will open with swayexec.
    
    4. Make sure you have the following packages installed:
  
