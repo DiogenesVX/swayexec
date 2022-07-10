@@ -1,0 +1,8 @@
+#!/bin/bash
+# A small utility to run GUI applications as root (e.g. gparted, etherape etc.)
+#### Requires: coreutils, sudo, policykit-1, libnotify-bin, yad
+printf 1 > /tmp/.yadaskpasswdattempts
+swayexec="pkttyagent | pkexec env XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR"
+SUDO_ASKPASS=/usr/local/bin/yadaskpass sudo -A -s --preserve-env=XDG_RUNTIME_DIR eval "$swayexec" "$@"
+[ "$?" == 1 ] && notify-send --expire-time=5000 --icon=error "Authentication failed, exceeded number of attempts"
+exit

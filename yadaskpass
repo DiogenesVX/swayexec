@@ -1,0 +1,11 @@
+#!/bin/bash
+# creates yad password dialog
+passwdnotification="Authentication required, please enter your password"
+if [ $(cat /tmp/.yadaskpasswdattempts) == 11 ]; then
+    passwdnotification="Wrong password, please try again, attempts left: 2"
+elif [ $(cat /tmp/.yadaskpasswdattempts) == 111 ]; then
+    passwdnotification="Wrong password, please try again, attempts left: 1"
+fi
+yad --title="$passwdnotification" --width=415 --buttons-layout=center --hide-text --entry
+printf 1 >> /tmp/.yadaskpasswdattempts
+exit
